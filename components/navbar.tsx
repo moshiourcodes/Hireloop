@@ -25,7 +25,9 @@ const links = [
 
 function useIsActive(href: string) {
   const pathname = usePathname()
-  return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`)
+  return href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`)
 }
 
 function NavLink({
@@ -46,7 +48,7 @@ function NavLink({
       onClick={onClick}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "font-sans text-[16px] leading-[1.8] text-[#EDEDEF] no-underline transition-colors hover:text-white focus-visible:outline-none focus-visible:underline",
+        "font-sans text-[16px] leading-[1.8] text-[#EDEDEF] no-underline transition-colors hover:text-white focus-visible:underline focus-visible:outline-none",
         isActive && "font-bold underline underline-offset-2",
         className
       )}
@@ -56,7 +58,13 @@ function NavLink({
   )
 }
 
-function Logo({ className, onClick }: { className?: string; onClick?: () => void }) {
+function Logo({
+  className,
+  onClick,
+}: {
+  className?: string
+  onClick?: () => void
+}) {
   return (
     <Link
       href="/"
@@ -136,7 +144,10 @@ function MobileNav() {
           ))}
         </nav>
         <Separator className="bg-[#A8A8A8]/40" />
-        <AuthButtons className="w-full flex-col items-stretch" onNavigate={close} />
+        <AuthButtons
+          className="w-full flex-col items-stretch"
+          onNavigate={close}
+        />
       </SheetContent>
     </Sheet>
   )
