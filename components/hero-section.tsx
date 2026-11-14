@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 import Link from "next/link"
 import {
   BriefcaseBusiness,
@@ -79,13 +81,21 @@ function Badge() {
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-[#010103]">
-      {/* Glow background (approximates the Figma gradient shapes) */}
+      {/* Background image (user-supplied hero background) + dark overlay for readability */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute top-0 left-1/2 h-212.75 w-[1840px] max-w-none -translate-x-1/2 bg-[radial-gradient(ellipse_50%_50%_at_50%_0%,rgba(92,83,254,0.5),rgba(220,2,206,0.18)_45%,transparent_72%)]" />
-        <div className="absolute top-[65%] left-1/2 h-259.25 w-309 max-w-none -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(92,83,254,0.22),transparent)]" />
+        <Image
+          src="/hero-bg.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,1,3,0.55)_0%,rgba(1,1,3,0.75)_50%,rgba(1,1,3,0.92)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(92,83,254,0.28),transparent_70%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-center gap-12 pt-24 text-center md:pt-50">
           <Badge />
           <div className="flex max-w-3xl flex-col items-center gap-4">
@@ -150,3 +160,17 @@ export function HeroSection() {
     </section>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
