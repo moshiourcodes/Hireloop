@@ -27,24 +27,24 @@ export default function SignInPage() {
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050508] px-4 py-12 text-white">
 
       {/* Background Glow */}
-      <div className="pointer-events-none absolute left-1/2 top-[35%] h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-blue-700/10 blur-[150px]" />
+      <div className="pointer-events-none absolute left-1/2 top-[35%] h-112.5 w-112.5 -translate-x-1/2 rounded-full bg-blue-700/10 blur-[150px]" />
 
-      <div className="relative z-10 flex w-full max-w-[490px] flex-col items-center">
+      <div className="relative z-10 flex w-full max-w-122.5 flex-col items-center">
 
         {/* HireLoop Logo */}
         <Link href="/" className="mb-10">
           <span className="text-[38px] font-extrabold tracking-[-2px]">
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               hire
             </span>
-            <span className="bg-gradient-to-r from-blue-500 via-orange-400 to-red-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-500 via-orange-400 to-red-400 bg-clip-text text-transparent">
               loop
             </span>
           </span>
         </Link>
 
         {/* Sign In Card */}
-        <div className="w-full rounded-[22px] border border-white/[0.12] bg-white/[0.045] p-7 shadow-2xl backdrop-blur-2xl sm:p-9">
+        <div className="w-full rounded-[22px] border border-white/12 bg-white/4.5 p-7 shadow-2xl backdrop-blur-2xl sm:p-9">
 
           <div className="mb-10 text-center">
             <h1 className="mb-3 text-[34px] font-bold sm:text-[38px]">
@@ -80,7 +80,7 @@ export default function SignInPage() {
                   placeholder="you@example.com"
                   autoComplete="email"
                   required
-                  className="h-[58px] w-full rounded-xl border border-white/10 bg-[#292832]/90 pl-12 pr-4 text-base outline-none transition placeholder:text-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="h-14.5 w-full rounded-xl border border-white/10 bg-[#292832]/90 pl-12 pr-4 text-base outline-none transition placeholder:text-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                 />
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function SignInPage() {
                   placeholder="Your password"
                   autoComplete="current-password"
                   required
-                  className="h-[58px] w-full rounded-xl border border-white/10 bg-[#292832]/90 pl-12 pr-12 text-base outline-none transition placeholder:text-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="h-14.5 w-full rounded-xl border border-white/10 bg-[#292832]/90 pl-12 pr-12 text-base outline-none transition placeholder:text-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                 />
 
                 <button
@@ -137,7 +137,7 @@ export default function SignInPage() {
             {/* Submit */}
             <button
               type="submit"
-              className="h-[60px] w-full rounded-xl bg-gradient-to-r from-[#527CFF] to-[#3986F7] text-lg font-bold text-white shadow-lg shadow-blue-500/20 transition hover:brightness-110 active:scale-[0.99]"
+              className="h-15 w-full rounded-xl bg-linear-to-r from-[#527CFF] to-[#3986F7] text-lg font-bold text-white shadow-lg shadow-blue-500/20 transition hover:brightness-110 active:scale-[0.99]"
             >
               Sign In
             </button>
