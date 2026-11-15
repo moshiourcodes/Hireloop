@@ -11,16 +11,57 @@ import {
   EyeOff,
 } from "lucide-react";
 
+import { authClient } from "@/lib/auth-client";
+
 export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    setErrorMessage("");
+    setSuccessMessage("");
+    setIsLoading(true);
 
-    console.log("Sign In Form Data:", data);
+    try {
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+
+      const email = formData.get("email") as string;
+      const password = formData.get("password") as string;
+
+      const { data, error } = await authClient.signIn.email({
+        email,
+        password,
+        callbackURL: "/",
+      });
+
+      if (error) {
+        setErrorMessage(
+          error.message || "Invalid email or password. Please try again."
+        );
+        return;
+      }
+
+      console.log("Sign in successful:", data);
+
+      setSuccessMessage("You have signed in successfully!");
+
+      // Redirect to homepage after successful sign-in
+      window.location.href = "/";
+      
+    } catch (error) {
+      console.error("Sign in error:", error);
+
+      setErrorMessage(
+        "Unable to sign in. Please try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -134,13 +175,35 @@ export default function SignInPage() {
               </div>
             </div>
 
+            {/* Error Message */}
+            {errorMessage && (
+              <div
+                role="alert"
+                className="rounded-lg border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-400"
+              >
+                {errorMessage}
+              </div>
+            )}
+
+            {/* Success Message */}
+            {successMessage && (
+              <div
+                role="status"
+                className="rounded-lg border border-green-500/20 bg-green-500/10 p-3 text-sm text-green-400"
+              >
+                {successMessage}
+              </div>
+            )}
+
             {/* Submit */}
             <button
               type="submit"
-              className="h-15 w-full rounded-xl bg-linear-to-r from-[#527CFF] to-[#3986F7] text-lg font-bold text-white shadow-lg shadow-blue-500/20 transition hover:brightness-110 active:scale-[0.99]"
+              disabled={isLoading}
+              className="h-15 w-full rounded-xl bg-linear-to-r from-[#527CFF] to-[#3986F7] text-lg font-bold text-white shadow-lg shadow-blue-500/20 transition hover:brightness-110 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Sign In
+              {isLoading ? "Signing In..." : "Sign In"}
             </button>
+
           </form>
 
           {/* Toggle to Sign Up */}
@@ -153,6 +216,7 @@ export default function SignInPage() {
               Create an account
             </Link>
           </div>
+
         </div>
       </div>
     </main>
