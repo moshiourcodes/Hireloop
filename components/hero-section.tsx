@@ -160,17 +160,3 @@ export function HeroSection() {
     </section>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
